@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="uk">
+
+<head>
+  <meta charset="utf-8" />
+  <title>SSE</title>
+</head>
+
+<body>
+  <h1>Хід обробки</h1>
+  <ul id="reasoning"></ul>
+
+  <h1>Відповідь</h1>
+  <p id="answer"></p>
+
+  <script>
+    const reasoningList = document.getElementById('reasoning')
+    const answerBox = document.getElementById('answer')
+    const source = new EventSource('/chat/stream')
+
+    source.addEventListener('reasoning', (event) => {
+      const item = document.createElement('li')
+      item.textContent = event.data
+      reasoningList.append(item)
+    })
+
+    source.addEventListener('answer', (event) => {
+      answerBox.textContent = event.data
+    })
+
+    source.addEventListener('error', (event) => {
+      if (!(event instanceof MessageEvent)) {
+        return
+      }
+
+      answerBox.textContent = event.data
+      source.close()
+    })
+
+    source.addEventListener('done', () => {
+      source.close()
+    })
+  </script>
+</body>
+
+</html>

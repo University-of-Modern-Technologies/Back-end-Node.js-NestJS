@@ -1,0 +1,26 @@
+{
+  "data": {
+    "__schema": {
+      "queryType": { "name": "Query" },
+      "types": [
+        { "name": "Genre" },
+        { "name": "Author" },
+        { "name": "ID" },
+        { "name": "String" },
+        { "name": "Book" },
+        { "name": "Int" },
+        { "name": "Float" },
+        { "name": "Boolean" },
+        { "name": "Query" },
+        { "name": "__Schema" },
+        { "name": "__Type" },
+        { "name": "__TypeKind" },
+        { "name": "__Field" },
+        { "name": "__InputValue" },
+        { "name": "__EnumValue" },
+        { "name": "__Directive" },
+        { "name": "__DirectiveLocation" }
+      ]
+    }
+  }
+}

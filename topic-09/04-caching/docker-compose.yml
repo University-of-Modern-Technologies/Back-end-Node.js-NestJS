@@ -1,0 +1,22 @@
+services:
+  mongodb:
+    image: mongo:8
+    container_name: tasks-api-mongo
+    restart: always
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - tasks-api-mongo-data:/data/db
+
+  redis:
+    image: redis:8
+    container_name: tasks-api-redis
+    restart: always
+    ports:
+      - '6379:6379'
+
+volumes:
+  tasks-api-mongo-data:

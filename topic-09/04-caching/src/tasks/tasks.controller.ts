@@ -1,0 +1,48 @@
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
+import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
+import { TasksService } from './tasks.service';
+import { CreateTaskDto } from './dto/create-task.dto';
+import { UpdateTaskDto } from './dto/update-task.dto';
+import { TaskResponseDto } from './dto/task-response.dto';
+import { FindTasksQueryDto } from './dto/find-tasks-query.dto';
+
+@ApiTags('tasks')
+@Controller('tasks')
+export class TasksController {
+  constructor(private readonly tasksService: TasksService) {}
+
+  @Post()
+  create(@Body() dto: CreateTaskDto) {
+    return this.tasksService.create(dto);
+  }
+
+  @Get()
+  findAll(@Query() query: FindTasksQueryDto) {
+    return this.tasksService.findAll(query.page, query.limit);
+  }
+
+  @Get(':id')
+  @ApiOkResponse({ type: TaskResponseDto })
+  findOne(@Param('id') id: string) {
+    return this.tasksService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() dto: UpdateTaskDto) {
+    return this.tasksService.update(id, dto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.tasksService.remove(id);
+  }
+}

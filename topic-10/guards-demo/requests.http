@@ -1,0 +1,29 @@
+GET http://localhost:3000/
+
+###
+
+
+GET http://localhost:3000/items
+
+###
+
+POST http://localhost:3000/items
+Content-Type: application/json
+
+{ "title": "Ноутбук" }
+
+###
+
+POST http://localhost:3000/items
+Content-Type: application/json
+x-api-key: secret
+
+{ "title": "Ноутбук" }
+
+###
+
+POST http://localhost:3000/items
+Content-Type: application/json
+x-api-key: wrong
+
+{ "title": "Ноутбук" }
